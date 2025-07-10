@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Cairo', sans-serif;
+    }
+
+    .member-card {
+      width: 220px;
+      border: none;
+      border-radius: 15px;
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      background-color: #fff;
+      margin: auto;
+    }
+
+    .member-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+    }
+
+    .member-img {
+      height: 200px;
+      width: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    .member-card:hover .member-img {
+      transform: scale(1.05);
+    }
+
+    .card-title {
+      font-size: 1rem;
+      color: #063dbe;
+      margin-top: 10px;
+    }
+
+    .social-icons a {
+      color: #555;
+      font-size: 1.1rem;
+      margin: 0 0.4rem;
+      transition: color 0.2s ease;
+    }
+
+    .social-icons a:hover {
+      color: #ff8215;
+    }
+  </style>
+  <title>أعضاء المركز</title>
+</head>
+
+<body class="d-flex flex-column min-vh-100">
+
+  <!-- Header -->
+  <div class="position-relative w-100">
+    <img src="images/background.png" class="img-fluid w-100 object-fit-cover" style="max-height: 400px;" alt="background" />
+    <div class="position-absolute top-0 w-100 h-100"
+      style="background: linear-gradient(to bottom, rgba(6, 61, 190, 0.4), rgba(255, 130, 21, 0.5));"></div>
+    <a href="#">
+      <img src="images/logo.png" alt="logo"
+        class="position-absolute top-0 end-0 m-2 img-fluid"
+        style="width: 14%; min-width: 40px;" />
+    </a>
+    <h2 class="position-absolute top-50 start-50 translate-middle text-white fw-bold text-center"
+      style="font-size: clamp(16px, 4vw, 36px);">
+      أعضاء المركز
+    </h2>
+  </div>
+
+  <!-- Members Section -->
+  <div class="flex-grow-1 py-5 px-3"
+    style="background: linear-gradient(to bottom, rgba(188,192,199,0.398), rgba(255,130,21,0.497));">
+    <div class="container">
+      <div class="container py-5">
+
+  <!-- سكشن مدير المركز -->
+ <!-- سكشن فريق القيادة -->
+<h4 class="fw-bold mb-4" style="color: #b97c50;">فريق المركز</h4>
+<div class="row g-4 justify-content-start">
+
+  <!-- مدير المركز -->
+  <div class="col-auto">
+    <div class="card member-card text-center p-3">
+      <h5 class="card-title">د. سلطان الغامدي</h5>
+      <p class="text-muted mb-0">مدير المركز</p>
+    </div>
+  </div>
+
+  <!-- نائب المدير -->
+  <div class="col-auto">
+    <div class="card member-card text-center p-3">
+      <h5 class="card-title">د. حاتم سندي</h5>
+      <p class="text-muted mb-0">نائب المدير</p>
+    </div>
+  </div>
+
+  <!-- مدير الإدارة -->
+  <div class="col-auto">
+    <div class="card member-card text-center p-3">
+      <h5 class="card-title">أ. صلاح آل عمر</h5>
+      <p class="text-muted mb-0">مدير الإدارة</p>
+    </div>
+  </div>
+
+</div>
+
+
+  <!-- سكشن أعضاء المركز -->
+  <h4 class="fw-bold mt-5 mb-4" style="color: #b97c50;">أعضاء المركز</h4>
+  <div class="row g-4 justify-content-start">
+    <!-- كرري هذا الكرت مع تغيير الاسم -->
+    <div class="col-auto"><div class="card member-card text-center p-3"><h5 class="card-title">عبدالرحيم العبيدي</h5><p class="text-muted mb-0">عضو المركز</p></div></div>
+    <div class="col-auto"><div class="card member-card text-center p-3"><h5 class="card-title">أحمد فلمبان</h5><p class="text-muted mb-0">عضو المركز</p></div></div>
+    <div class="col-auto"><div class="card member-card text-center p-3"><h5 class="card-title">موسى مرزباند</h5><p class="text-muted mb-0">عضو المركز</p></div></div>
+    <div class="col-auto"><div class="card member-card text-center p-3"><h5 class="card-title">د. أنفال حظة</h5><p class="text-muted mb-0">عضو المركز</p></div></div>
+    <div class="col-auto"><div class="card member-card text-center p-3"><h5 class="card-title">مقبول أنور</h5><p class="text-muted mb-0">عضو المركز</p></div></div>
+    <div class="col-auto"><div class="card member-card text-center p-3"><h5 class="card-title">هبة شلهوب</h5><p class="text-muted mb-0">عضو المركز</p></div></div>
+  </div>
+
+  <!-- سكشن باحثو المركز -->
+  <h4 class="fw-bold mt-5 mb-4" style="color: #b97c50;">باحثو المركز</h4>
+  <div class="row g-4 justify-content-start">
+    <div class="col-auto"><div class="card member-card text-center p-3"><h5 class="card-title">د. عبدالله أبوصره</h5><p class="text-muted mb-0">باحث بالمركز</p></div></div>
+    <div class="col-auto"><div class="card member-card text-center p-3"><h5 class="card-title">د. محيي الدين راوه</h5><p class="text-muted mb-0">باحث بالمركز</p></div></div>
+    <div class="col-auto"><div class="card member-card text-center p-3"><h5 class="card-title">بروف. يوسف التركي</h5><p class="text-muted mb-0">باحث بالمركز</p></div></div>
+    <div class="col-auto"><div class="card member-card text-center p-3"><h5 class="card-title">د. محمد عجور</h5><p class="text-muted mb-0">باحث بالمركز</p></div></div>
+    <div class="col-auto"><div class="card member-card text-center p-3"><h5 class="card-title">د. فهد حريري</h5><p class="text-muted mb-0">باحث بالمركز</p></div></div>
+    <div class="col-auto"><div class="card member-card text-center p-3"><h5 class="card-title">د. عبدالله الحسيني</h5><p class="text-muted mb-0">باحث بالمركز</p></div></div>
+    <div class="col-auto"><div class="card member-card text-center p-3"><h5 class="card-title">د. نضال أبـوحمدة</h5><p class="text-muted mb-0">باحث بالمركز</p></div></div>
+    <div class="col-auto"><div class="card member-card text-center p-3"><h5 class="card-title">د. خالد سدراوي</h5><p class="text-muted mb-0">باحث بالمركز</p></div></div>
+    <div class="col-auto"><div class="card member-card text-center p-3"><h5 class="card-title">د. أحمد ملياني</h5><p class="text-muted mb-0">باحث بالمركز</p></div></div>
+  </div>
+
+  <!-- سكشن مستشارو المركز -->
+  <h4 class="fw-bold mt-5 mb-4" style="color: #b97c50;">مستشارو المركز</h4>
+  <div class="row g-4 justify-content-start">
+    <div class="col-auto"><div class="card member-card text-center p-3"><h5 class="card-title">د. حنين باويان</h5><p class="text-muted mb-0">مستشار بالمركز</p></div></div>
+    <div class="col-auto"><div class="card member-card text-center p-3"><h5 class="card-title">د. ميرفت العرضاوي</h5><p class="text-muted mb-0">مستشار بالمركز</p></div></div>
+    <div class="col-auto"><div class="card member-card text-center p-3"><h5 class="card-title">د. عبدالعزيز التركي</h5><p class="text-muted mb-0">مستشار بالمركز</p></div></div>
+  </div>
+
+</div>
+
+  </div>
+
+</body>
+
+</html>

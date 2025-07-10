@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <title>بطاقات معايدة - نادي الإبداع الهندسي</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: 'Cairo', sans-serif;
+      background: linear-gradient(to bottom right, #319a84, #3587b9);
+      color: #222;
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+    .container {
+      max-width: 900px;
+      width: 100%;
+      background: white;
+      border-radius: 20px;
+      padding: 30px 20px;
+      box-shadow: 0 0 30px rgba(0,0,0,0.15);
+      text-align: center;
+    }
+    header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    header img {
+      height: 60px;
+    }
+    h1 {
+      font-size: 1.8em;
+      color: #319a84;
+      margin: 0;
+    }
+    .cards {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin: 20px 0;
+    }
+    .card {
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 12px;
+      overflow: hidden;
+      width: 140px;
+      cursor: pointer;
+      transition: 0.3s;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+    }
+    .card img {
+      width: 100%;
+      display: block;
+    }
+    .input-area {
+      margin-top: 20px;
+    }
+    input[type="text"],
+    input[type="color"],
+    select {
+      padding: 10px;
+      border: 2px solid #319a84;
+      border-radius: 8px;
+      font-size: 1em;
+      margin: 5px;
+    }
+    input[type="text"] {
+      width: 80%;
+      max-width: 300px;
+    }
+    button {
+      padding: 10px 20px;
+      background: #3587b9;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background 0.3s;
+      margin-top: 10px;
+    }
+    button:hover {
+      background: #2b6fa0;
+    }
+    canvas {
+      display: none;
+      margin-top: 25px;
+      border: 3px solid #319a84;
+      border-radius: 12px;
+      max-width: 100%;
+    }
+    #downloadBtn {
+      display: none;
+      margin-top: 15px;
+    }
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 1.4em;
+      }
+      .card {
+        width: 45%;
+      }
+    }
+  </style>
+  <!-- الخطوط الإضافية -->
+  <link href="https://fonts.googleapis.com/css2?family=Amiri&family=Cairo:wght@400;700&family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <img src="تهنئة حسب الإسم.png" alt="شعار النادي">
+      <h1>بطاقات معايدة - نادي الإبداع الهندسي</h1>
+    </header>
+
+    <p style="font-size: 1.1em; margin-bottom: 20px; color:#444">اختر بطاقة وادخل اسمك واختر الإعدادات التي تحبها ✨</p>
+
+    <div class="cards" id="cardContainer">
+      <div class="card"><img src="منشور Instagram تهنئة بمناسبة العيد (3).png" alt="قالب 1" onclick="selectCard(this)"></div>
+      <div class="card"><img src="منشور Instagram تهنئة بمناسبة العيد (4).png" alt="قالب 2" onclick="selectCard(this)"></div>
+      <div class="card"><img src="منشور Instagram تهنئة بمناسبة العيد (5).png" alt="قالب 3" onclick="selectCard(this)"></div>
+      <div class="card"><img src="منشور Instagram تهنئة بمناسبة العيد (6).png" alt="قالب 4" onclick="selectCard(this)"></div>
+      <div class="card"><img src="منشور Instagram تهنئة بمناسبة العيد (8).png" alt="قالب 5" onclick="selectCard(this)"></div>
+      <div class="card"><img src="منشور Instagram أزرق داكن وأبيض تهنئة  عيد الفطر المبارك.png" alt="قالب 6" onclick="selectCard(this)"></div>
+    </div>
+
+    <div class="input-area">
+      <input type="text" id="nameInput" placeholder="اكتب اسمك هنا">
+      <br>
+      <label for="colorInput">لون الخط:</label>
+      <input type="color" id="colorInput" value="#ffffff">
+
+      <label for="fontSelect">نوع الخط:</label>
+      <select id="fontSelect">
+        <option value="Amiri">Amiri</option>
+        <option value="Cairo">Cairo</option>
+        <option value="Tajawal">Tajawal</option>
+      </select>
+
+      <label for="fontSizeSelect">حجم الخط:</label>
+      <select id="fontSizeSelect">
+        <option value="24">صغير</option>
+        <option value="32" selected>متوسط</option>
+        <option value="40">كبير</option>
+      </select>
+      <br>
+      <button onclick="generateCard()">تجهيز البطاقة</button>
+    </div>
+
+    <canvas id="cardCanvas" width="600" height="800"></canvas>
+    <br>
+    <button id="downloadBtn" onclick="downloadCard()">تحميل البطاقة</button>
+  </div>
+
+  <script>
+    let selectedImage = null;
+
+    function selectCard(img) {
+      selectedImage = img.src;
+      document.querySelectorAll('.card').forEach(card => card.style.border = '1px solid #ddd');
+      img.parentElement.style.border = '2px solid #319a84';
+    }
+
+    function generateCard() {
+      const name = document.getElementById('nameInput').value.trim();
+      const color = document.getElementById('colorInput').value;
+      const font = document.getElementById('fontSelect').value;
+      const fontSize = document.getElementById('fontSizeSelect').value;
+
+      if (!selectedImage || !name) {
+        alert('رجاءً اختر بطاقة وأدخل اسمك');
+        return;
+      }
+
+      const canvas = document.getElementById('cardCanvas');
+      const ctx = canvas.getContext('2d');
+      const img = new Image();
+      img.src = selectedImage;
+      img.onload = function () {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+        ctx.font = `${fontSize}px ${font}, serif`;
+        ctx.fillStyle = color;
+        ctx.textAlign = 'center';
+        ctx.shadowColor = '#319a84';
+        ctx.shadowBlur = 6;
+        ctx.fillText(name, canvas.width / 2, canvas.height - 210);
+        canvas.style.display = 'block';
+        document.getElementById('downloadBtn').style.display = 'inline-block';
+      }
+    }
+
+    function downloadCard() {
+      const canvas = document.getElementById('cardCanvas');
+      const link = document.createElement('a');
+      link.download = 'بطاقتك.png';
+      link.href = canvas.toDataURL();
+      link.click();
+    }
+  </script>
+</body>
+</html>
